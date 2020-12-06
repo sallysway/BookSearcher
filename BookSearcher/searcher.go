@@ -49,6 +49,7 @@ func findBookInventory() {
 	}
 }
 
+//get the Title, Author, Read, Read date, InGoodreads values of columns to create the Book instance
 func cellVisitor(c *xlsx.Cell) error {
 	num := reflect.ValueOf(c).Elem().FieldByName("num").Int()
 	value, err := c.FormattedValue()
@@ -66,6 +67,7 @@ func cellVisitor(c *xlsx.Cell) error {
 		owned = getOwned(value)
 	case 6:
 		inGoodreads = getInGoodreads(value)
+		//all columns have been populated. create the book instance
 		allBookObjects = append(allBookObjects, Book{
 			Title:    title,
 			Author:   author,
@@ -93,7 +95,7 @@ func getAuthor(s string) string {
 	nameParts := strings.Split(s, ",")
 	if len(nameParts) == 2 {
 		firstName := strings.Trim(nameParts[1], " ")
-		firstName = strings.Replace(firstName, "", ",", -1)
+		firstName = strings.Replace(firstName, ",", "", -1)
 		lastName := strings.Trim(nameParts[0], " ")
 		return firstName + " " + lastName
 	}
@@ -149,5 +151,5 @@ func RemoveIndex(slice []Book, index int) []Book {
 func main() {
 	findBookInventory()
 	buildBookList()
-	allBookObjects = RemoveIndex(allBookObjects, 0)
+	allBookObjects = RemoveIndex(allBookObjects, 0) //remove first values, these will be the column names
 }
