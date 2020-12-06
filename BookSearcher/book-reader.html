@@ -1,0 +1,85 @@
+<html>
+
+<head>
+   <link rel="stylesheet" type="text/css" href="book-reader.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
+
+   <script type="text/javascript" src="book-reader.js"></script>
+   <script src="fuzzyset.js"></script>
+</head>
+
+<body>
+   <h1 class="title center" style="color: #F0716B;">Ioana's Book Manager<i class="fas fa-folder-open"
+         style="margin-left:10%;"></i></h1>
+
+   <div id="reactComponent"></div>
+
+   <div id="newBookModal" class="modal" style="display: none;">
+      <div class="modal-content">
+         <div id="modalHeader" class="modal-header">
+            <span class="close" id="closeBtn">&times;</span>
+         </div>
+
+      </div>
+   </div>
+   <div id="crudContainer" class="container">
+      <div class="row">
+         <div class="col-md-4">
+            <label for="my_file_input" id="loadBooks" class="btn btn-primary" style="width:112px">Load
+               library</label>
+            <input type="file" id="my_file_input" style="visibility: hidden" />
+         </div>
+         <div class="col-md-4">
+            <button type="submit" id="addBook" style="width:112px;" class="btn btn-primary">Add book</button>
+         </div>
+         <div class="col-md-4">
+            <button type="submit" id="removeBook" style="width:112px;" class="btn btn-primary">Remove book</button>
+         </div>
+      </div>
+   </div>
+   <div id="askManager">
+      <input type="text" id="bookName" name="bookName" placeholder="Pride and prejudice" onfocus="this.placeholder = ''"
+         onblur="this.placeholder = 'Pride and prejudice'">
+      <br>
+      <!-- show books modal window -->
+      <div id="myModal" class="modal">
+         <div class="modal-content">
+            <div id="modalHeader" class="modal-header">
+               <span class="close" id="closeBtn">&times;</span>
+               <h2 id="showAuthor"></h2>
+            </div>
+            <p id="modalText"></p>
+            <div class="modal-footer" id="modalFooter">
+               <h3 style="text-align: left;"></h3>
+            </div>
+         </div>
+      </div>
+      <button type="submit" id="haveRead" class="btn btn-primary read">Have I read it?</button>
+      <span id="bookOpenIcon"><i class="fas fa-book-open" style="margin-left:10px"></i></span>
+      <br>
+      <input type="text" id="authorName" name="authorName" placeholder="Neil Gaiman" onfocus="this.placeholder = ''"
+         onblur="this.placeholder = 'Neil Gaiman'">
+      <br>
+      <button type="submit" id="authorRead" class="btn btn-primary read">Any books from this author?</button>
+      <button type="submit" id="showBooks" class="btn btn-primary read">Show books</button>
+      <div id="noBooksError" class="alert alert-warning">
+         <strong>Warning!</strong> You must load file with books first
+      </div>
+   </div>
+</body>
+
+</html>
